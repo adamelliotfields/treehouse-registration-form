@@ -1,0 +1,25 @@
+/* Layout styles. */
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  @include media($tablet) {
+    /* The form in the mocks is never greater than 600px (660 with padding) wide. */
+    max-width: 660px;
+  }
+}
+
+.grid {
+  display: grid;
+  /* Single column layout that fills the entire row. */
+  grid-template-columns: 1fr;
+
+  @include media($tablet) {
+    /* The label column will be 150px, and the inputs will fill the rest of the row. */
+    grid-template-columns: 150px 1fr;
+  }
+}

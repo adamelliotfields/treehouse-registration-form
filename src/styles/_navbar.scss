@@ -1,0 +1,26 @@
+/* Navbar styles. */
+
+.navbar {
+  align-items: center;
+  background-color: $licorice-blue;
+  display: flex;
+  height: 63px;
+  justify-content: center;
+  padding: 1rem 30px;
+  position: fixed;
+  /* Fix the navbar to the top of the document. */
+  top: 0;
+  width: 100%;
+  /* Z-index doesn't have to be a huge number, just greater than any other indices. */
+  z-index: 1;
+
+  &-name {
+    color: $white;
+    font-family: $serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    /* Never wrap the name, even if the screen is tiny. */
+    white-space: nowrap;
+  }
+}

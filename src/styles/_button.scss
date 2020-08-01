@@ -1,0 +1,29 @@
+/* Button styles. */
+
+.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  background-color: $puerto-rico-green;
+  border: 1px solid $puerto-rico-green;
+  border-radius: 0.25rem;
+  color: $white;
+  cursor: pointer;
+  display: block;
+  font-size: 1.25rem;
+  /* The 1.5 line-height combined with 0.5rem vertical padding gets us to a 3rem height. */
+  line-height: 1.5;
+  overflow: hidden;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  width: 100%;
+
+  &:hover {
+    border-color: $licorice-blue;
+    background-color: $licorice-blue;
+  }
+}

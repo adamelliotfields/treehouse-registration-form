@@ -1,0 +1,19 @@
+/* Global styles. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $white;
+  color: $black;
+  /* Montserrat Google font plus standard sans-serif system fonts. */
+  font-family: $sans-serif;
+  font-size: 16px;
+  margin: 0;
+  /* Offset the height of the navbar. */
+  padding-top: 63px;
+  padding-bottom: 63px;
+}

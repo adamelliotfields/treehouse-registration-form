@@ -1,0 +1,214 @@
+/* Form styles. */
+
+.form {
+  margin-bottom: 2rem;
+}
+
+/* Reset default fieldset styles. */
+.fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+
+  &-wrapper {
+    /* Styling a fieldset with a legend can be tricky, so wrap it in a div. */
+    border-top: 2px solid $licorice-blue;
+    margin-bottom: 1.25rem;
+    padding-top: 2rem;
+
+    @include media($tablet) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  p {
+    font-weight: 500;
+  }
+}
+
+.legend {
+  font-family: $serif;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  padding: 0;
+
+  + p {
+    margin: 0 0 1rem 0;
+  }
+}
+
+.label {
+  color: $gray;
+  /* Not using grid gap as we want differing vertical whitespace for labels and inputs. */
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+
+  @include media($tablet) {
+    align-self: center;
+  }
+
+  &-hidden {
+    /* Visually hidden label that still works with screen readers (derived from Bootstrap). */
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
+
+.input[type='text'],
+.input[type='email'],
+.input[type='tel'],
+.textarea,
+.select {
+  color: $licorice-blue;
+  background-color: $zircon-gray;
+  border: 2px solid $zircon-gray;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  height: 3rem;
+  margin: 0 0 0.75rem 0;
+  padding: 0.5rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.input,
+.textarea,
+.select {
+  &:focus,
+  &:active {
+    border: 2px solid $licorice-blue;
+    outline: none;
+  }
+}
+
+.input {
+  &:focus,
+  &:active {
+    &:invalid {
+      background-color: $pink;
+    }
+  }
+
+  &:invalid {
+    &:not(:focus) {
+      /* We'll style the invalid border using JavaScript. */
+      border: none;
+    }
+  }
+}
+
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('../img/arrow.svg');
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 8px 10px;
+}
+
+.label,
+.input,
+.select {
+  @include media($tablet) {
+    margin-bottom: 1rem;
+  }
+}
+
+.textarea {
+  width: 100%;
+  height: 6rem;
+}
+
+/* You can't style a checkbox directly, so we have to wrap it in a container that we can style. */
+.checkbox,
+.radio {
+  margin-bottom: 0.5rem;
+  min-height: 1.5rem;
+  padding-left: 1.5rem;
+
+  &-input {
+    /* Hide the regular checkbox. */
+    margin: 0;
+    position: absolute;
+    opacity: 0;
+  }
+
+  &-label {
+    position: relative;
+
+    &::before {
+      transition: all 0.15s ease-in-out;
+      pointer-events: none;
+      border: 1px solid $licorice-blue;
+    }
+
+    &::before,
+    &::after {
+      display: block;
+      position: absolute;
+      /* Adjust top and left to move the checkbox relative to the label. */
+      top: 2px;
+      left: -24px;
+      width: 1rem;
+      height: 1rem;
+      content: '';
+    }
+
+    &::after {
+      background-repeat: no-repeat;
+      background-position: 50% center;
+      background-size: 50% 50%;
+    }
+  }
+}
+
+.checkbox-label {
+  &::before {
+    border-radius: 0.25rem;
+  }
+}
+
+.radio-label {
+  &::before {
+    border-radius: 50%;
+  }
+}
+
+.checkbox-input:checked ~ .checkbox-label::before,
+.radio-input:checked ~ .radio-label::before {
+  color: $white;
+  border-color: $licorice-blue;
+  background-color: $licorice-blue;
+}
+
+.checkbox-input:checked ~ .checkbox-label::after {
+  background-image: url('../img/check.svg');
+}
+
+.radio-input:checked ~ .radio-label::after {
+  background-image: url('../img/circle.svg');
+}
+
+/* Firefox adds a red box shadow to invalid inputs. */
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/* Firefox adds an outline to all focused inputs. */
+:-moz-focusring {
+  outline: none;
+}
+
+/* Modern versions of Chrome and Firefox support ::placeholder without a vendor prefix. */
+::placeholder {
+  font-family: $sans-serif;
+  font-size: 0.875rem;
+  font-style: italic;
+  text-align: right;
+}
