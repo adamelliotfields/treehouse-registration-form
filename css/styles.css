@@ -1,10 +1,4 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v7.0.29,
-* Autoprefixer: v9.7.6
-* Browsers: defaults
-*/
-
+/* Global styles. */
 *,
 *::before,
 *::after {
@@ -25,40 +19,7 @@ body {
   padding-bottom: 63px;
 }
 
-/* Navbar. */
-.navbar {
-  align-items: center;
-  background-color: #2d3945;
-  display: flex;
-  justify-content: center;
-  padding: 1rem 30px;
-  position: fixed;
-  /* Fix the navbar to the top of the document. */
-  top: 0;
-  width: 100%;
-  /* Z-index doesn't have to be a huge number, just greater than any other indices. */
-  z-index: 1;
-}
-
-.navbar-name {
-  color: #fff;
-  font-family: Merriweather, serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  /* Never wrap the name, even if the screen is tiny. */
-  white-space: nowrap;
-}
-
-/* Header. */
-.header {
-  border-bottom: 4px solid #2d3945;
-  margin-bottom: 2px;
-  margin-top: 2rem;
-  padding-bottom: 2rem;
-  text-align: center;
-}
-
+/* Typography styles. */
 .title {
   font-size: 1.5rem;
   margin: 0;
@@ -70,15 +31,59 @@ body {
   margin: 1rem 0 0 0;
 }
 
-.form {
-  margin-bottom: 2rem;
+/* Layout styles. */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
-/* Styling a fieldset with a legend can be tricky, so wrap it in a div. */
-.fieldset-wrapper {
-  border-top: 2px solid #2d3945;
-  margin-bottom: 1.25rem;
-  padding-top: 2rem;
+.grid {
+  display: grid;
+  /* Single column layout that fills the entire row. */
+  grid-template-columns: 1fr;
+}
+
+/* Navbar styles. */
+.navbar {
+  align-items: center;
+  background-color: #2d3945;
+  display: flex;
+  height: 63px;
+  justify-content: center;
+  padding: 1rem 30px;
+  position: fixed;
+  /* Fix the navbar to the top of the document. */
+  top: 0;
+  width: 100%;
+  /* Z-index doesn't have to be a huge number, just greater than any other indices. */
+  z-index: 1;
+}
+
+.navbar-name {
+  color: #fafafa;
+  font-family: Merriweather, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  /* Never wrap the name, even if the screen is tiny. */
+  white-space: nowrap;
+}
+
+/* Header styles. */
+.header {
+  border-bottom: 4px solid #2d3945;
+  margin-bottom: 2px;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+/* Form styles. */
+.form {
+  margin-bottom: 2rem;
 }
 
 /* Reset default fieldset styles. */
@@ -86,6 +91,13 @@ body {
   border: 0;
   margin: 0;
   padding: 0;
+}
+
+.fieldset-wrapper {
+  /* Styling a fieldset with a legend can be tricky, so wrap it in a div. */
+  border-top: 2px solid #2d3945;
+  margin-bottom: 1.25rem;
+  padding-top: 2rem;
 }
 
 .fieldset p {
@@ -110,6 +122,19 @@ body {
   white-space: nowrap;
 }
 
+.label-hidden {
+  /* Visually hidden label that still works with screen readers (derived from Bootstrap). */
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 .input[type='text'],
 .input[type='email'],
 .input[type='tel'],
@@ -126,15 +151,6 @@ body {
   transition: all 0.15s ease-in-out;
 }
 
-.select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url('../img/arrow.svg');
-  background-position: right 0.75rem center;
-  background-repeat: no-repeat;
-  background-size: 8px 10px;
-}
-
 .input:focus,
 .input:active,
 .textarea:focus,
@@ -147,12 +163,21 @@ body {
 
 .input:focus:invalid,
 .input:active:invalid {
-  background-color: pink;
+  background-color: #ffc0cb;
 }
 
 .input:invalid:not(:focus) {
   /* We'll style the invalid border using JavaScript. */
   border: none;
+}
+
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('../img/arrow.svg');
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 8px 10px;
 }
 
 .textarea {
@@ -168,9 +193,9 @@ body {
   padding-left: 1.5rem;
 }
 
-/* Hide the regular checkbox. */
 .checkbox-input,
 .radio-input {
+  /* Hide the regular checkbox. */
   margin: 0;
   position: absolute;
   opacity: 0;
@@ -179,6 +204,13 @@ body {
 .checkbox-label,
 .radio-label {
   position: relative;
+}
+
+.checkbox-label::before,
+.radio-label::before {
+  transition: all 0.15s ease-in-out;
+  pointer-events: none;
+  border: 1px solid #2d3945;
 }
 
 .checkbox-label::before,
@@ -195,11 +227,11 @@ body {
   content: '';
 }
 
-.checkbox-label::before,
-.radio-label::before {
-  transition: all 0.15s ease-in-out;
-  pointer-events: none;
-  border: 1px solid #2d3945;
+.checkbox-label::after,
+.radio-label::after {
+  background-repeat: no-repeat;
+  background-position: 50% center;
+  background-size: 50% 50%;
 }
 
 .checkbox-label::before {
@@ -210,16 +242,9 @@ body {
   border-radius: 50%;
 }
 
-.checkbox-label::after,
-.radio-label::after {
-  background-repeat: no-repeat;
-  background-position: 50% center;
-  background-size: 50% 50%;
-}
-
 .checkbox-input:checked ~ .checkbox-label::before,
 .radio-input:checked ~ .radio-label::before {
-  color: #fff;
+  color: #fafafa;
   border-color: #2d3945;
   background-color: #2d3945;
 }
@@ -230,19 +255,6 @@ body {
 
 .radio-input:checked ~ .radio-label::after {
   background-image: url('../img/circle.svg');
-}
-
-/* Visually hidden label that still works with screen readers (derived from Bootstrap). */
-.label-hidden {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
 }
 
 /* Firefox adds a red box shadow to invalid inputs. */
@@ -257,20 +269,22 @@ body {
 
 /* Modern versions of Chrome and Firefox support ::placeholder without a vendor prefix. */
 ::placeholder {
-  font-family: Montserrat, sans-serif;
+  font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
   font-size: 0.875rem;
   font-style: italic;
   text-align: right;
 }
 
-/* Submit button. */
+/* Button styles. */
 .button {
   -webkit-appearance: button;
   -moz-appearance: button;
   background-color: #4ebbb5;
   border: 1px solid #4ebbb5;
   border-radius: 0.25rem;
-  color: #fff;
+  color: #fafafa;
   cursor: pointer;
   display: block;
   font-size: 1.25rem;
@@ -292,6 +306,7 @@ body {
   background-color: #2d3945;
 }
 
+/* Footer styles. */
 .footer {
   color: #808080;
   font-style: italic;
@@ -299,44 +314,25 @@ body {
   text-align: center;
 }
 
-/* Grid. */
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-.grid {
-  display: grid;
-  /* Single column layout that fills the entire row. */
-  grid-template-columns: 1fr;
-}
-
-/* Tablet. */
+/* Media queries. */
 @media (min-width: 768px) {
+  .container {
+    /* The form in the mocks is never greater than 600px (660 with padding) wide. */
+    max-width: 660px;
+  }
+  .grid {
+    /* The label column will be 150px, and the inputs will fill the rest of the row. */
+    grid-template-columns: 150px 1fr;
+  }
   .fieldset-wrapper {
     margin-bottom: 1rem;
   }
-
+  .label {
+    align-self: center;
+  }
   .label,
   .input,
   .select {
     margin-bottom: 1rem;
-  }
-
-  .label {
-    align-self: center;
-  }
-
-  /* The form in the mocks is never greater than 600px (660 with padding) wide. */
-  .container {
-    max-width: 660px;
-  }
-
-  .grid {
-    /* The label column will be 150px, and the inputs will fill the rest of the row. */
-    grid-template-columns: 150px 1fr;
   }
 }
