@@ -11,58 +11,28 @@
   <img src="https://img.shields.io/badge/-css-1572b6?logo=css3&logoColor=fff" alt="css badge" />
 </h3>
 
-## About
-
-The third unit demonstrates using HTML and CSS to make a mobile-first, responsive form with multiple
-input types, including custom styles for form inputs.
-
-All CSS code is hand-written and the layout must match the mocks. The contact information fieldset
-uses CSS Grid for layout.
-
-The HTML and CSS code must pass W3C validation.
-
-## Usage
-
-You can view hosted site [here](https://adamelliotfields.github.io/treehouse-registration-form/index.html).
-
-You can also simply open `index.html` in your browser directly. For example, if your macOS user name
-is `adam` and you cloned the repo in `~/Downloads`, then go to
-`file:///Users/adam/Downloads/treehouse-registration-form/index.html` in your web browser.
-
-You can also use PHP or Python's built-in HTTP server by running one of these commands in the same
-directory as `index.html`.
+## Installation
 
 ```bash
-# PHP
-php -S localhost:8000
-
-# Python 2
-python -m SimpleHTTPServer
-
-# Python 3
-python3 -m http.server
+git clone --single-branch -b dev https://github.com/adamelliotfields/treehouse-registration-form.git
 ```
 
-## Live Reloading
-
-If you have Node.js and NPM installed, you can use [Browsersync](https://browsersync.io) to start a
-live reload server.
+## Development
 
 ```bash
-npm install --global browser-sync
+# Install dependencies.
+npm install
 
-# Run this in the same directory as index.html
-browser-sync . -w
+# Run the live reload server.
+npm start
+
+# Build assets without running the server.
+npm run build
 ```
 
-## Validating HTML and CSS
+## Deployment
 
-Use the [W3C HTML](https://validator.w3.org/#validate_by_input) and
-[W3C CSS](https://jigsaw.w3.org/css-validator/#validate_by_input) validators by pasting the code
-into the text input.
+The `dist` folder is actually the `master` branch of this repository. This works using Git
+[worktrees](https://git-scm.com/docs/git-worktree).
 
-## Browser Compatibility
-
-- Chrome 84
-- Firefox 79
-- Safari 13
+After building, `cd` into `dist`, commmit any changes, and push to `master`.
