@@ -21,6 +21,12 @@ uses CSS Grid for layout.
 
 The HTML and CSS code must pass W3C validation.
 
+## Installation
+
+```bash
+git clone --single-branch -b master https://github.com/adamelliotfields/treehouse-registration-form.git
+```
+
 ## Usage
 
 You can view hosted site [here](https://adamelliotfields.github.io/treehouse-registration-form/index.html).
@@ -29,8 +35,8 @@ You can also simply open `index.html` in your browser directly. For example, if 
 is `adam` and you cloned the repo in `~/Downloads`, then go to
 `file:///Users/adam/Downloads/treehouse-registration-form/index.html` in your web browser.
 
-You can also use PHP or Python's built-in HTTP server by running one of these commands in the same
-directory as `index.html`.
+Finally, you can use PHP or Python's built-in HTTP server by running one of these commands in the
+same directory as `index.html`.
 
 ```bash
 # PHP
@@ -41,18 +47,6 @@ python -m SimpleHTTPServer
 
 # Python 3
 python3 -m http.server
-```
-
-## Live Reloading
-
-If you have Node.js and NPM installed, you can use [Browsersync](https://browsersync.io) to start a
-live reload server.
-
-```bash
-npm install --global browser-sync
-
-# Run this in the same directory as index.html
-browser-sync . -w
 ```
 
 ## Validating HTML and CSS
