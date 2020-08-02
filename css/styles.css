@@ -9,9 +9,7 @@ body {
   background-color: #fafafa;
   color: #000;
   /* Montserrat Google font plus standard sans-serif system fonts. */
-  font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
+  font-family: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 16px;
   margin: 0;
   /* Offset the height of the navbar. */
@@ -111,7 +109,7 @@ body {
   padding: 0;
 }
 
-.legend + p {
+.legend+p {
   margin: 0 0 1rem 0;
 }
 
@@ -174,7 +172,7 @@ body {
 .select {
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url('../img/arrow.svg');
+  background-image: url("../img/arrow.svg");
   background-position: right 0.75rem center;
   background-repeat: no-repeat;
   background-size: 8px 10px;
@@ -242,19 +240,19 @@ body {
   border-radius: 50%;
 }
 
-.checkbox-input:checked ~ .checkbox-label::before,
-.radio-input:checked ~ .radio-label::before {
+.checkbox-input:checked~.checkbox-label::before,
+.radio-input:checked~.radio-label::before {
   color: #fafafa;
   border-color: #2d3945;
   background-color: #2d3945;
 }
 
-.checkbox-input:checked ~ .checkbox-label::after {
-  background-image: url('../img/check.svg');
+.checkbox-input:checked~.checkbox-label::after {
+  background-image: url("../img/check.svg");
 }
 
-.radio-input:checked ~ .radio-label::after {
-  background-image: url('../img/circle.svg');
+.radio-input:checked~.radio-label::after {
+  background-image: url("../img/circle.svg");
 }
 
 /* Firefox adds a red box shadow to invalid inputs. */
@@ -269,9 +267,7 @@ body {
 
 /* Modern versions of Chrome and Firefox support ::placeholder without a vendor prefix. */
 ::placeholder {
-  font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
+  font-family: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.875rem;
   font-style: italic;
   text-align: right;
@@ -314,22 +310,25 @@ body {
   text-align: center;
 }
 
-/* Media queries. */
 @media (min-width: 768px) {
   .container {
     /* The form in the mocks is never greater than 600px (660 with padding) wide. */
     max-width: 660px;
   }
+
   .grid {
     /* The label column will be 150px, and the inputs will fill the rest of the row. */
     grid-template-columns: 150px 1fr;
   }
+
   .fieldset-wrapper {
     margin-bottom: 1rem;
   }
+
   .label {
     align-self: center;
   }
+
   .label,
   .input,
   .select {
