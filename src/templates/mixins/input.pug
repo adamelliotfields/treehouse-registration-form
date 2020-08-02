@@ -1,0 +1,4 @@
+mixin input(id, label, type, placeholder, required)
+  <!-- #{label} -->
+  label.label(for=id)= label
+  input.input(id=id, type=type, name=id, placeholder=placeholder, required=required)

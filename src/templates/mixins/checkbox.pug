@@ -1,0 +1,5 @@
+mixin checkbox(id, label)
+  <!-- #{label} -->
+  div.checkbox
+    input.checkbox-input(id=id, type='checkbox', name=id)
+    label.checkbox-label(for=id)= label

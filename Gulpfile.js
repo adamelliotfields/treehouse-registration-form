@@ -1,12 +1,12 @@
-const cssMqpacker = require('@hail2u/css-mqpacker');
 const execa = require('execa');
 const fs = require('fs-extra');
+const gulpBeautify = require('gulp-beautify');
 const gulpIf = require('gulp-if');
 const gulpPostcss = require('gulp-postcss');
-const gulpPrettier = require('gulp-prettier');
+const gulpPug = require('gulp-pug');
 const gulpRename = require('gulp-rename');
 const gulpSass = require('gulp-sass');
-const path = require('path');
+const mqpacker = require('@hail2u/css-mqpacker');
 const { create } = require('browser-sync');
 const { dest, parallel, series, src, watch } = require('gulp');
 
@@ -26,38 +26,54 @@ const worktree = () => execa('git', ['worktree', 'add', '-B', 'master', 'dist', 
 
 // Copy static assets.
 // prettier-ignore
-const copy = () => src(['src/images/*', 'src/mockups/*', 'src/favicon.ico', 'src/gitignore', 'src/README.md'])
+const copy = () => src('src/static/**/*')
   .pipe(gulpIf('**/gitignore', gulpRename('.gitignore')))
-  .pipe(dest((file) => {
-    const includes = (dir) => file.dirname.split(path.sep).includes(dir);
-    if (includes('mockups')) return 'dist/mockups';
-    if (includes('images')) return 'dist/img';
-    return 'dist';
-  }));
+  .pipe(dest('dist'));
+
+// Compile Pug to HTML.
+// prettier-ignore
+const pug = () => src('src/templates/**/*.pug', { ignore: '**/@(mixins|partials)/**/*.pug' })
+  .pipe(gulpPug())
+  .pipe(gulpBeautify.html({
+    end_with_newline: true,
+    // Comments will get an extra newline before them.
+    extra_liners: ['!--'],
+    indent_inner_html: true,
+    indent_size: 2,
+    // Don't inline any tags.
+    inline: [],
+    js: {
+      // Prevents an extra newline before the closing </script> tag.
+      end_with_newline: false,
+    },
+  }))
+  .pipe(dest('dist'));
 
 // Compile SCSS to CSS.
 // prettier-ignore
 const sass = () => src('src/styles/index.scss')
   .pipe(gulpSass({ outputStyle: 'expanded' }).on('error', gulpSass.logError))
-  .pipe(gulpPostcss([cssMqpacker({ sort: true })]))
-  .pipe(gulpPrettier({ endOfLine: 'lf', printWidth: 100, singleQuote: true }))
+  .pipe(gulpPostcss([mqpacker({ sort: true })]))
+  .pipe(gulpBeautify.css({
+    end_with_newline: true,
+    indent_size: 2,
+    newline_between_rules: true,
+    selector_separator_newline: true,
+  }))
   .pipe(gulpRename('styles.css'))
   .pipe(dest('dist/css'));
-
-// Copy HTML files.
-const html = () => src('src/*.html').pipe(dest('dist'));
 
 // Stream the compiled CSS to Browser Sync.
 const reloadSass = () => sass().pipe(bs.stream({ match: '**/*.css' }));
 
-// Stream the copied HTML to Browser Sync.
-const reloadHtml = () => html().pipe(bs.stream({ match: '**/*.html', once: true }));
+// Stream the compiled HTML to Browser Sync.
+const reloadPug = () => pug().pipe(bs.stream({ match: '**/*.html', once: true }));
 
 // Watch all SCSS files for changes and let Browser Sync inject changes into the page.
 const watchSass = () => watch('src/styles/**/*.scss', reloadSass);
 
-// Watch all HTML files for changes and let Browser Sync reload the page.
-const watchHtml = () => watch('src/*.html', reloadHtml);
+// Watch all Pug files for changes and let Browser Sync reload the page.
+const watchPug = () => watch('src/templates/**/*.pug', reloadPug);
 
 // Start the Browser Sync server.
 // prettier-ignore
@@ -73,10 +89,10 @@ exports.default = series(
   clean,
   worktree,
   copy,
-  html,
+  pug,
   sass,
   browserSync,
-  parallel(watchSass, watchHtml),
+  parallel(watchPug, watchSass),
 );
 
 // prettier-ignore
@@ -84,6 +100,6 @@ exports.build = series(
   clean,
   worktree,
   copy,
-  html,
+  pug,
   sass,
 );

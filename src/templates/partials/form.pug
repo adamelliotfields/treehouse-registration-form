@@ -1,0 +1,65 @@
+-
+  const inputs = [
+    { id: 'name', label: 'Full Name', type: 'text', placeholder: 'Required', required: true },
+    { id: 'email', label: 'Email Address', type: 'email', placeholder: 'Required', required: true },
+    { id: 'phone', label: 'Phone Number', type: 'tel', placeholder: '(123) 456-7890', required: false },
+    { id: 'address', label: 'Street Address', type: 'text', placeholder: '123 Main Street', required: false },
+    { id: 'city', label: 'City', type: 'text', placeholder: 'Anytown', required: false },
+  ];
+
+  const checkboxes = [
+    { id: 'htmlNews', label: 'HTML News' },
+    { id: 'cssNews', label: 'CSS News' },
+    { id: 'jsNews', label: 'JavaScript News' },
+  ];
+
+  const radios = [
+    { id: 'formatHtml', label: 'HTML', name: 'format', value: 'html' },
+    { id: 'formatText', label: 'Plain text', name: 'format', value: 'text' },
+  ];
+
+<!-- Form -->
+form.form#form
+  div.fieldset-wrapper
+    fieldset.fieldset
+      legend.legend Contact Information
+
+      div.grid
+        include ../mixins/input.pug
+        each input in inputs
+          +input(input.id, input.label, input.type, input.placeholder, input.required)
+
+        <!-- State -->
+        label.label(for='state') State
+        select.select#state(name='state')
+          option(value='', disabled=true, selected=true) Choose State
+          option(value='Anystate') Anystate
+
+        <!-- Zip Code -->
+        label.label(for='zip') Zip Code
+        input.input#zip(type='text', name='zip', placeholder='12345', pattern='\d{5}')
+
+  <!-- Newsletter -->
+  div.fieldset-wrapper
+    fieldset.fieldset
+      legend.legend Newsletter
+      p Select the newsletters you would like to receive
+
+      include ../mixins/checkbox.pug
+      each checkbox in checkboxes
+        +checkbox(checkbox.id, checkbox.label)
+
+      p Newsletter format
+
+      include ../mixins/radio.pug
+      each radio in radios
+        +radio(radio.id, radio.label, radio.name, radio.value)
+
+      p Other topics you'd like to hear about
+
+      <!-- Other Topics -->
+      label.label-hidden(for='other') Other Topics
+      textarea.textarea#other(name='other', placeholder='Anything?')
+
+  <!-- Sign Up -->
+  button.button(type='submit') Sign Up

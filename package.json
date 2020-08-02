@@ -12,9 +12,10 @@
     "execa": "4.0.3",
     "fs-extra": "3.0.1",
     "gulp": "4.0.2",
+    "gulp-beautify": "3.0.0",
     "gulp-if": "3.0.0",
     "gulp-postcss": "8.0.0",
-    "gulp-prettier": "3.0.0",
+    "gulp-pug": "4.0.1",
     "gulp-rename": "2.0.0",
     "gulp-sass": "4.1.0"
   }

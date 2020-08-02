@@ -1,0 +1,5 @@
+mixin radio(id, label, name, value)
+  <!-- #{label} -->
+  div.radio
+    input.radio-input(id=id, type='radio', name=name, value=value)
+    label.radio-label(for=id)= label
